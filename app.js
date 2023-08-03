@@ -12,7 +12,7 @@ class Logic {
         
         this.semaphore = new Semaphore(0, 0, 100);
         this.semaphoreString = this.getRandomString();
-        this.isSemaphore = false;
+        this.isSemaphore = true;
     } // end of constructor
 
     getRandomString() {
@@ -88,7 +88,9 @@ function draw() {
 
     if (mouseIsPressed) {} // end of if
 
-    logic.draw(X, 0, WINDOW_MIN);
+    if(logic.isSemaphore) {
+        logic.draw(X, 0, WINDOW_MIN);
+    } // end of if
 } // end of draw
 
 function windowResized() {
