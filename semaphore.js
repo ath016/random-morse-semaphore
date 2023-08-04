@@ -1,8 +1,8 @@
-function Semaphore(x, y, size) {
+function Semaphore() {
 	// properties
-	this.x = x;
-	this.y = y;
-	this.size = size;
+	this.x = 0;
+	this.y = 0;
+	this.size = 0;
 	this.rl = 0;
 	this.rr = 0;
 	this.trl = 0;
@@ -261,13 +261,6 @@ function Semaphore(x, y, size) {
 		
 		if(this.flicker > 0) this.flicker--;
 	} // end of update;
-	
-	// resize
-	this.resize = function(x, y, size) {
-		this.x = x;
-		this.y = y;
-		this.size = size;
-	} // end of resize
 
 	this.getRet = function(x, y, r) {
 		let xp = x * Math.cos(r) - y * Math.sin(r);

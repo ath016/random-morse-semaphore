@@ -10,7 +10,7 @@ class Logic {
         this.moreseString = this.getRandomString();
         this.isMorse = true;
         
-        this.semaphore = new Semaphore(0, 0, 100);
+        this.semaphore = new Semaphore();
         this.semaphoreString = this.getRandomString();
         this.isSemaphore = true;
     } // end of constructor
