@@ -7,12 +7,13 @@ class Logic {
         this.refresh = 60;
         this.offset = this.refresh >> 1;
 
-        this.moreseString = this.getRandomString();
+        this.morse = new Morse();
+        this.morseString = this.getRandomString();
         this.isMorse = true;
         
         this.semaphore = new Semaphore();
         this.semaphoreString = this.getRandomString();
-        this.isSemaphore = true;
+        this.isSemaphore = false;
     } // end of constructor
 
     getRandomString() {
@@ -33,6 +34,7 @@ class Logic {
 
     draw(x, y, size) {
         this.semaphore.draw(x, y, size);
+        this.morse.draw(x, y, size)
     } // end of draw
 } // end of logic
 // interval
@@ -57,8 +59,19 @@ let interval = setInterval(function() {
 	if(logic.frame && (logic.frame / step) % logic.semaphoreString.length == 0) {
 		logic.semaphoreString = logic.getRandomString();
 	} // end of if
+
+    // set random letter
+	if(logic.frame % step == 0) {
+		logic.morse.set(logic.morseString[(logic.frame / step) % logic.morseString.length]);
+	} // end of if
+
+	// reset random string
+	if(logic.frame && (logic.frame / step) % logic.morseString.length == 0) {
+		logic.morseString = logic.getRandomString();
+	} // end of if
 	
 	logic.semaphore.update(logic.refresh);
+    logic.morse.update(logic.refresh, logic.frame, logic.duration, step);
 	logic.frame++;
 }, 1000 / logic.refresh); // end of set interval
 //window.clearInterval(interval);
@@ -89,8 +102,12 @@ function draw() {
     if (mouseIsPressed) {} // end of if
 
     if(logic.isSemaphore) {
-        logic.draw(X, 0, WINDOW_MIN);
+        logic.semaphore.draw(X, 0, WINDOW_MIN);
     } // end of if
+
+    if(logic.isMorse) {
+        logic.morse.draw(X, 0, WINDOW_MIN);
+    }
 } // end of draw
 
 function windowResized() {

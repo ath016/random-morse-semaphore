@@ -3,17 +3,14 @@ function Morse() {
 	this.x = 0;
 	this.y = 0;
 	this.size = 0;
+	this.string = [];
+	this.displayLength = 4;
+	this.offset = 0;
 	
 	// set letter
 	this.set = function(c) {
-		const alpha = [
-			'a','b','c','d','e',
-			'f','g','h','i','j',
-			'k','l','m','n','o',
-			'p','q','r','s','t',
-			'u','v','w','x','y',
-			'z',' '
-		];
+		this.string.unshift(c);
+		this.string.length = this.displayLength + 1;
 	} // end of set
 	
 	// draw object
@@ -22,12 +19,14 @@ function Morse() {
 		this.y = y;
 		this.size = size;
 
-		// TODO
+		textSize(size * 0.25);
+		this.string
+			.map((x,i) => text(x, this.x + size / this.displayLength, (1 - i/this.displayLength) * size - this.offset * this.size / this.displayLength)) // end of map
 	} // end of draw object
 	
 	// update
-	this.update = function(move) {
-		// TODO
+	this.update = function(refresh, frame, duration, step) {
+		this.offset = (frame % step) / step;
 	} // end of update;
 } // end of morse class */
 
