@@ -100,14 +100,15 @@ function draw() {
     //*/
 
     if (mouseIsPressed) {} // end of if
-
-    if(logic.isSemaphore) {
-        logic.semaphore.draw(X, 0, WINDOW_MIN);
+    if(logic.isMorse) {
+        fill('black');
+        logic.morse.draw(X, 0, WINDOW_MIN, logic.frame % (logic.refresh * logic.duration / 1000));
     } // end of if
 
-    if(logic.isMorse) {
-        logic.morse.draw(X, 0, WINDOW_MIN);
-    }
+    if(logic.isSemaphore) {
+        fill('white');
+        logic.semaphore.draw(X, 0, WINDOW_MIN);
+    } // end of if
 } // end of draw
 
 function windowResized() {
