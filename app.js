@@ -32,6 +32,35 @@ class Logic {
         return randomString;
     } // end of set random string
 
+    update() {
+        // step
+        const step = this.refresh * this.duration / 1000;
+    
+        // set random letter
+        if(this.frame % step == 0) {
+            this.semaphore.set(this.semaphoreString[(this.frame / step) % this.semaphoreString.length]);
+        } // end of if
+    
+        // reset random string
+        if(this.frame && (this.frame / step) % this.semaphoreString.length == 0) {
+            this.semaphoreString = this.getRandomString();
+        } // end of if
+    
+        // set random letter
+        if(this.frame % step == 0) {
+            this.morse.set(this.morseString[(this.frame / step) % this.morseString.length]);
+        } // end of if
+    
+        // reset random string
+        if(this.frame && (this.frame / step) % this.morseString.length == 0) {
+            this.morseString = this.getRandomString();
+        } // end of if
+        
+        this.semaphore.update(this.refresh);
+        this.morse.update(this.refresh, this.frame, this.duration, step);
+        this.frame++;
+    } // end of update
+
     draw(x, y, size) {
         this.semaphore.draw(x, y, size);
         this.morse.draw(x, y, size)
@@ -43,46 +72,15 @@ class Logic {
 
 let logic = new Logic();
 
-/* EVENT ******************************************************** */
-
-// interal
-let interval = setInterval(function() {
-	// step
-	const step = logic.refresh * logic.duration / 1000;
-
-	// set random letter
-	if(logic.frame % step == 0) {
-		logic.semaphore.set(logic.semaphoreString[(logic.frame / step) % logic.semaphoreString.length]);
-	} // end of if
-
-	// reset random string
-	if(logic.frame && (logic.frame / step) % logic.semaphoreString.length == 0) {
-		logic.semaphoreString = logic.getRandomString();
-	} // end of if
-
-    // set random letter
-	if(logic.frame % step == 0) {
-		logic.morse.set(logic.morseString[(logic.frame / step) % logic.morseString.length]);
-	} // end of if
-
-	// reset random string
-	if(logic.frame && (logic.frame / step) % logic.morseString.length == 0) {
-		logic.morseString = logic.getRandomString();
-	} // end of if
-	
-	logic.semaphore.update(logic.refresh);
-    logic.morse.update(logic.refresh, logic.frame, logic.duration, step);
-	logic.frame++;
-}, 1000 / logic.refresh); // end of set interval
-//window.clearInterval(interval);
-//*/
-
 /* START UP ***************************************************** */
 
 function setup() {
     createCanvas(windowWidth, windowHeight);
+    frameRate(logic.refresh);
 } // end of setup
-  
+
+/* DRAW ********************************************************* */
+
 function draw() {
     const WINDOW_MIN = min(windowWidth, windowHeight);
     const TEST_SIZE = WINDOW_MIN / 15;
@@ -99,6 +97,8 @@ function draw() {
     text('Faster', X + WINDOW_MIN * 0.6, windowHeight - TEST_SIZE);
     //*/
 
+    logic.update()
+
     if (mouseIsPressed) {} // end of if
     if(logic.isMorse) {
         fill('black');
@@ -111,6 +111,8 @@ function draw() {
     } // end of if
 } // end of draw
 
+/* EVENT ******************************************************** */
+
 function windowResized() {
     resizeCanvas(windowWidth, windowHeight);
-} // end of window resize
+} // end of window resize */
