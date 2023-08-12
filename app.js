@@ -1,12 +1,16 @@
 /* VARIABLE ***************************************************** */
 
 let logic = new Logic();
+let dot, dash;
 
 /* START UP ***************************************************** */
 
 function setup() {
     createCanvas(windowWidth, windowHeight);
     frameRate(logic.refresh);
+
+    dot = createAudio('dot.mp3');
+    dash = createAudio('dash.mp3');
 } // end of setup
 
 /* DRAW ********************************************************* */
