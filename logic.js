@@ -1,7 +1,7 @@
 class Logic {
     constructor() {        
         this.frame = 0;
-        this.duration = 2000
+        this.duration = 3000
         this.refresh = 60;
         this.offset = this.refresh >> 1;
 
@@ -63,4 +63,8 @@ class Logic {
         this.semaphore.draw(x, y, size);
         this.morse.draw(x, y, size)
     } // end of draw
+
+    toggleMute() {
+        this.morse.mute = !this.morse.mute;
+    } // end of toggle mute
 } // end of logic

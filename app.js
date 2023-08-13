@@ -33,8 +33,10 @@ function draw() {
     //*/
 
     logic.update()
-
-    if (mouseIsPressed) {} // end of if
+    // mute switch
+    if (mouseIsPressed) {
+        logic.toggleMute();
+    } // end of if
 
     if(logic.isMorse) {
         fill('black');
