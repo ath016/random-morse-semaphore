@@ -8,15 +8,14 @@ let polySynth;
 function setup() {
     createCanvas(windowWidth, windowHeight);
     frameRate(logic.refresh);
-
-    polySynth = new p5.PolySynth();
 } // end of setup
 
 /* DRAW ********************************************************* */
 
 function keyPressed() {
+    polySynth = new p5.PolySynth();
     if(key == ' ') logic.toggleMute();
-  }
+} // end of key pressed
 
 function draw() {
     const WINDOW_MIN = min(windowWidth, windowHeight);
