@@ -15,7 +15,7 @@ function setup() {
 /* DRAW ********************************************************* */
 
 function keyPressed() {
-    logic.toggleMute();
+    if(key == ' ') logic.toggleMute();
   }
 
 function draw() {
