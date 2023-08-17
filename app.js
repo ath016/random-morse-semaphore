@@ -14,6 +14,10 @@ function setup() {
 
 /* DRAW ********************************************************* */
 
+function keyPressed() {
+    logic.toggleMute();
+  }
+
 function draw() {
     const WINDOW_MIN = min(windowWidth, windowHeight);
     const TEST_SIZE = WINDOW_MIN / 15;
@@ -31,17 +35,16 @@ function draw() {
     text('Faster', X + WINDOW_MIN * 0.6, windowHeight - TEST_SIZE);
     //*/
 
+    // update
     logic.update()
-    // mute switch
-    if (mouseIsPressed) {
-        logic.toggleMute();
-    } // end of if
 
+    // draw morse
     if(logic.isMorse) {
         fill('black');
         logic.morse.draw(X, 0, WINDOW_MIN);
     } // end of if
-
+    
+    // draw semaphore
     if(logic.isSemaphore) {
         fill('white');
         logic.semaphore.draw(X, 0, WINDOW_MIN);

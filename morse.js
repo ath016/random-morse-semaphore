@@ -36,7 +36,7 @@ function Morse() {
 	this.dash = function() {
 		// synth
 		let time = 0;
-		let random = Math.random() / 4 + .75;
+		let random = 1//Math.random() / 4 + .75;
 	  
 		// notes can overlap with each other
 		// play(note, volume, delay, duration)
@@ -50,7 +50,7 @@ function Morse() {
 	this.dot = function() {
 		// synth
 		let time = 0;
-		let random = Math.random() / 4 + 1;
+		let random = 1//Math.random() / 4 + 1;
 	  
 		// notes can overlap with each other
 		// play(note, volume, delay, duration)
