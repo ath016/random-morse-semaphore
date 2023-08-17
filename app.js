@@ -1,7 +1,7 @@
 /* VARIABLE ***************************************************** */
 
 let logic = new Logic();
-let dot, dash;
+let polySynth;
 
 /* START UP ***************************************************** */
 
@@ -9,8 +9,7 @@ function setup() {
     createCanvas(windowWidth, windowHeight);
     frameRate(logic.refresh);
 
-    dot = createAudio('dot.mp3');
-    dash = createAudio('dash.mp3');
+    polySynth = new p5.PolySynth();
 } // end of setup
 
 /* DRAW ********************************************************* */
@@ -40,7 +39,7 @@ function draw() {
 
     if(logic.isMorse) {
         fill('black');
-        logic.morse.draw(X, 0, WINDOW_MIN, logic.frame % (logic.refresh * logic.duration / 1000));
+        logic.morse.draw(X, 0, WINDOW_MIN);
     } // end of if
 
     if(logic.isSemaphore) {
