@@ -66,7 +66,7 @@ function Morse() {
 			.split('')
 			.reduce((t,s) => {
 				// calc character value
-				let sVal = s == '.'? 20: 30;
+				let sVal = s == '.'? 20: 25;
 				
 				// update total
 				if(!t[2]) {
