@@ -13,26 +13,28 @@ function setup() {
 /* DRAW ********************************************************* */
 
 function keyPressed() {
-    polySynth = new p5.PolySynth();
+    if(!polySynth) polySynth = new p5.PolySynth();
     if(key == ' ') logic.toggleMute();
 } // end of key pressed
 
-function draw() {
-    const WINDOW_MIN = min(windowWidth, windowHeight);
-    const TEST_SIZE = WINDOW_MIN / 15;
-    const X = (windowWidth - WINDOW_MIN) / 2;
-    
-    clear();
-    /*/
-    fill('black');
-    textSize(TEST_SIZE);
-    text('Morse', X + WINDOW_MIN * 0.05, TEST_SIZE);
-    text('Both', X + WINDOW_MIN * 0.35, TEST_SIZE);
-    text('Semaphore', X + WINDOW_MIN * .6, TEST_SIZE);
+function mousePressed(fxn) {
+    if(!polySynth) polySynth = new p5.PolySynth();
+    logic.pointer(fxn.clientX, fxn.clientY,
+        min(windowWidth, windowHeight / 1.25), windowWidth, windowHeight)
+} // end of mouse pressed
 
-    text('Slower', X + WINDOW_MIN * 0.2, windowHeight - TEST_SIZE);
-    text('Faster', X + WINDOW_MIN * 0.6, windowHeight - TEST_SIZE);
-    //*/
+function touchStarted(fxn) {
+    if(!polySynth) polySynth = new p5.PolySynth();
+    logic.pointer(fxn.touches[0].clientX, fxn.touches[0].clientY,
+        min(windowWidth, windowHeight / 1.25), windowWidth, windowHeight);
+} // end of touch started
+
+function draw() {
+    const window_min = min(windowWidth, windowHeight / 1.25);
+    const text_size = window_min / 15;
+    const x = (windowWidth - window_min) / 2;
+
+    clear();
 
     // update
     logic.update()
@@ -40,14 +42,39 @@ function draw() {
     // draw morse
     if(logic.isMorse) {
         fill('black');
-        logic.morse.draw(X, 0, WINDOW_MIN);
+        logic.morse.draw(x, window_min / 8, window_min);
     } // end of if
     
     // draw semaphore
     if(logic.isSemaphore) {
         fill('white');
-        logic.semaphore.draw(X, 0, WINDOW_MIN);
+        stroke('black');
+        logic.semaphore.draw(x, window_min / 8, window_min);
     } // end of if
+    
+    fill('red');
+    strokeWeight(4);
+    stroke('white');
+
+    rect(x, 0, window_min / 3, window_min / 8, text_size);
+    rect(x +  window_min / 3, 0, window_min / 3, window_min / 8, text_size);
+    rect(x +  window_min * 2 / 3, 0, window_min / 3, window_min / 8, text_size);
+
+    rect(x, window_min * 9 / 8, window_min / 3, window_min / 8, text_size);
+    rect(x +  window_min / 3, window_min * 9 / 8, window_min / 3, window_min / 8, text_size);
+    rect(x +  window_min * 2 / 3, window_min * 9 / 8, window_min / 3, window_min / 8, text_size);
+
+    fill('white');
+    strokeWeight(1);
+    textSize(text_size);
+    text('Morse', x + window_min * 0.08, window_min * 0.08);
+    text('Both', x + window_min * 0.435, window_min * 0.08);
+    text('Sema_', x + window_min * .735, window_min * 0.08);
+
+    text('Slower', x + window_min * 0.07, window_min * 1.205);
+    text(logic.duration + ' ms', x + window_min * 0.37, window_min * 1.205);
+    text('Faster', x + window_min * 0.74, window_min * 1.205);
+    //*/
 } // end of draw
 
 /* EVENT ******************************************************** */

@@ -104,6 +104,9 @@ function Morse() {
 				this.x + size / 8,
 				(1 - i/this.displayLength) * size - this.offset * this.size / this.displayLength
 			)) // end of for each
+			
+		textSize(size / 8);
+		text(this.mute? '🔈':'🔊', this.x + size * 6 / 8, this.y + size * 7 / 8);
 	} // end of draw object
 	
 	// update
