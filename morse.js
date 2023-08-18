@@ -36,7 +36,7 @@ function Morse() {
 	this.dash = function() {
 		// synth
 		let time = 0;
-		let random = 1//Math.random() / 4 + .75;
+		let random = 1;
 	  
 		// notes can overlap with each other
 		// play(note, volume, delay, duration)
@@ -50,14 +50,14 @@ function Morse() {
 	this.dot = function() {
 		// synth
 		let time = 0;
-		let random = 1//Math.random() / 4 + 1;
+		let random = 1;
 	  
 		// notes can overlap with each other
 		// play(note, volume, delay, duration)
-		polySynth.play(this.B_5 * random, .05, time, .08);
-		polySynth.play(this.D_5 * random, .02, time, .08);
+		polySynth.play(this.B_5 * random, .05, time, .1);
+		polySynth.play(this.D_5 * random, .02, time, .1);
 		
-		polySynth.play(this.A_SHARP_5 * random, .05, time += .01, .08);
+		polySynth.play(this.A_SHARP_5 * random, .05, time += .01, .1);
 		polySynth.play(this.C_SHARP_5 * random, .02, time, .1);
 	} // end of dot
 
@@ -66,7 +66,7 @@ function Morse() {
 			.split('')
 			.reduce((t,s) => {
 				// calc character value
-				let sVal = s == '.'? 20: 25;
+				let sVal = s == '.'? 18: 25;
 				
 				// update total
 				if(!t[2]) {
