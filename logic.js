@@ -44,7 +44,7 @@ class Logic {
         } // end of if
     
         // reset random string and fram
-        if(this.semaphoreFrame == step * (this.semaphoreString.length - 1)) {
+        if(this.semaphoreFrame >= step * (this.semaphoreString.length - 1)) {
             this.semaphoreString = this.getRandomString();
             this.semaphoreFrame = 0;
         } // end of if
@@ -57,7 +57,7 @@ class Logic {
         } // end of if
     
         // reset random string and frame
-        if(this.morseFrame == step * (this.morseString.length - 1)) {
+        if(this.morseFrame >= step * (this.morseString.length - 1)) {
             this.morseString = this.getRandomString();
             this.morseFrame = 0;
         } // end of if
