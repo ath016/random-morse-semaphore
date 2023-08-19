@@ -52,6 +52,7 @@ function draw() {
         logic.morse.draw(x, window_min / 8, window_min);
     } // end of if
     
+    // button
     fill('red');
     strokeWeight(4);
     stroke('white');
@@ -61,10 +62,15 @@ function draw() {
     rect(x +  window_min * 2 / 3, 0, window_min / 3, window_min / 8, text_size);
 
     rect(x, window_min * 9 / 8, window_min / 3, window_min / 8, text_size);
-    rect(x +  window_min / 3, window_min * 9 / 8, window_min / 3, window_min / 8, text_size);
     rect(x +  window_min * 2 / 3, window_min * 9 / 8, window_min / 3, window_min / 8, text_size);
 
     fill('white');
+    stroke('red');
+    rect(x +  window_min / 3, window_min * 9 / 8, window_min / 3, window_min / 8, text_size);
+
+    // text
+    fill('white');
+
     strokeWeight(1);
     textSize(text_size);
     text('Morse', x + window_min * 0.08, window_min * 0.08);
@@ -72,8 +78,12 @@ function draw() {
     text('Sema_', x + window_min * .735, window_min * 0.08);
 
     text('Slower', x + window_min * 0.07, window_min * 1.205);
-    text(logic.duration + ' ms', x + window_min * 0.37, window_min * 1.205);
     text('Faster', x + window_min * 0.74, window_min * 1.205);
+
+    fill('red');
+    stroke('white');
+    text(logic.duration + ' ms', x + window_min * 0.37, window_min * 1.205);
+
     //*/
 } // end of draw
 
