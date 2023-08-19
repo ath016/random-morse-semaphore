@@ -38,18 +38,18 @@ function draw() {
 
     // update
     logic.update()
-
-    // draw morse
-    if(logic.isMorse) {
-        fill('black');
-        logic.morse.draw(x, window_min / 8, window_min);
-    } // end of if
     
     // draw semaphore
     if(logic.isSemaphore) {
         fill('white');
         stroke('black');
         logic.semaphore.draw(x, window_min / 8, window_min);
+    } // end of if
+
+    // draw morse
+    if(logic.isMorse) {
+        fill('black');
+        logic.morse.draw(x, window_min / 8, window_min);
     } // end of if
     
     fill('red');

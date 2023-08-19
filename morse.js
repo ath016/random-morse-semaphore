@@ -101,7 +101,7 @@ function Morse() {
 		this.stringDisplay
 			.forEach((x,i) => text(
 				x,
-				this.x + size / 8,
+				this.x + size / 16,
 				(1 - i/this.displayLength) * size - this.offset * this.size / this.displayLength
 			)) // end of for each
 			
