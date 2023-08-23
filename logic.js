@@ -73,9 +73,51 @@ class Logic {
         this.morseFrame++;
     } // end of update
 
-    draw(x, y, size) {
-        this.semaphore.draw(x, y, size);
-        this.morse.draw(x, y, size)
+    draw(x, y, window_min, text_size) {
+        // draw semaphore
+        if(this.isSemaphore) {
+            fill('white');
+            stroke('black');
+            this.semaphore.draw(x, window_min / 8, window_min);
+        } // end of if
+
+        // draw morse
+        if(this.isMorse) {
+            fill('black');
+            this.morse.draw(x, window_min / 8, window_min);
+        } // end of if
+        
+        // button
+        fill('red');
+        strokeWeight(4);
+        stroke('white');
+
+        rect(x, 0, window_min / 3, window_min / 8, text_size);
+        rect(x +  window_min / 3, 0, window_min / 3, window_min / 8, text_size);
+        rect(x +  window_min * 2 / 3, 0, window_min / 3, window_min / 8, text_size);
+
+        rect(x, window_min * 9 / 8, window_min / 3, window_min / 8, text_size);
+        rect(x +  window_min * 2 / 3, window_min * 9 / 8, window_min / 3, window_min / 8, text_size);
+
+        fill('white');
+        stroke('red');
+        rect(x +  window_min / 3, window_min * 9 / 8, window_min / 3, window_min / 8, text_size);
+
+        // text
+        fill('white');
+
+        strokeWeight(1);
+        textSize(text_size);
+        text('Morse', x + window_min * 0.08, window_min * 0.08);
+        text('Both', x + window_min * 0.435, window_min * 0.08);
+        text('Sema_', x + window_min * .735, window_min * 0.08);
+
+        text('Slower', x + window_min * 0.07, window_min * 1.205);
+        text('Faster', x + window_min * 0.74, window_min * 1.205);
+
+        fill('red');
+        stroke('white');
+        text(this.duration + ' ms', x + window_min * 0.37, window_min * 1.205);
     } // end of draw
 
     toggleMute() {
