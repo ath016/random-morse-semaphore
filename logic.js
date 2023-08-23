@@ -4,7 +4,7 @@ class Logic {
         this.refresh = 60;
 
         this.morse = new Morse();
-        this.morseFrame = this.refresh >> 1;
+        this.morseFrame = this.step() >> 1;
         this.morseString = this.getRandomString();
         this.isMorse = true;
         
@@ -32,9 +32,13 @@ class Logic {
         return randomString;
     } // end of set random string
 
+    step() {
+        return this.refresh * this.duration / 1000;
+    } // end of step
+
     update() {
         // step
-        const step = this.refresh * this.duration / 1000;
+        const step = this.step();
     
         // set random letter
         if(this.semaphoreFrame % step == 0) {
@@ -78,8 +82,14 @@ class Logic {
         this.morse.mute = !this.morse.mute;
     } // end of toggle mute
 
+    sync() {
+        this.semaphoreString = this.getRandomString();
+        this.semaphoreFrame = 0;
+        this.morseString = this.getRandomString();
+        this.morseFrame = this.step() >> 1;
+    } // end of sync
+
     pointer(x, y, window_min, width, height) {
-        
         // top menu
         if(y < window_min / 8 ) {
             // first item
@@ -114,7 +124,10 @@ class Logic {
         else if(window_min * 9 / 8 < y) {
             // first item
             if((width - window_min) / 2 < x && x < (width - window_min) / 2 + window_min / 3) {
+                // update duration
                 this.duration += 100;
+                // sync morse and semaphore
+                this.sync();
             } // end of first item
 
             // second item
@@ -124,8 +137,11 @@ class Logic {
 
             // third item
             if((width - window_min) / 2 + window_min * 2 / 3 < x && x < (width + window_min) / 2) {
+                // update duration
                 this.duration = Math
                     .max(this.duration - 100, this.isMorse * 2000, this.isSemaphore * 1000)
+                // sync morse and semaphore
+                this.sync();
             } // end of third item
         } // end of if
 
