@@ -78,13 +78,13 @@ class Logic {
         if(this.isSemaphore) {
             fill('white');
             stroke('black');
-            this.semaphore.draw(x, window_min / 8, window_min);
+            this.semaphore.draw(x, y, window_min);
         } // end of if
 
         // draw morse
         if(this.isMorse) {
             fill('black');
-            this.morse.draw(x, window_min / 8, window_min);
+            this.morse.draw(x, y, window_min);
         } // end of if
         
         // button
