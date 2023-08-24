@@ -12,23 +12,6 @@ function setup() {
 
 /* DRAW ********************************************************* */
 
-function keyPressed() {
-    if(!polySynth) polySynth = new p5.PolySynth();
-    if(key == ' ') logic.toggleMute();
-} // end of key pressed
-
-function mousePressed(fxn) {
-    if(!polySynth) polySynth = new p5.PolySynth();
-    logic.pointer(fxn.clientX, fxn.clientY,
-        min(windowWidth, windowHeight / 1.25), windowWidth, windowHeight)
-} // end of mouse pressed
-
-function touchStarted(fxn) {
-    if(!polySynth) polySynth = new p5.PolySynth();
-    logic.pointer(fxn.touches[0].clientX, fxn.touches[0].clientY,
-        min(windowWidth, windowHeight / 1.25), windowWidth, windowHeight);
-} // end of touch started
-
 function draw() {
     const window_min = min(windowWidth, windowHeight / 1.25);
     const text_size = window_min / 15;
@@ -48,3 +31,20 @@ function draw() {
 function windowResized() {
     resizeCanvas(windowWidth, windowHeight);
 } // end of window resize */
+
+function keyPressed() {
+    if(!polySynth) polySynth = new p5.PolySynth();
+    if(key == ' ') logic.toggleMute();
+} // end of key pressed
+
+function mousePressed(fxn) {
+    if(!polySynth) polySynth = new p5.PolySynth();
+    logic.pointer(fxn.clientX, fxn.clientY,
+        min(windowWidth, windowHeight / 1.25), windowWidth, windowHeight)
+} // end of mouse pressed
+
+function touchStarted(fxn) {
+    if(!polySynth) polySynth = new p5.PolySynth();
+    logic.pointer(fxn.touches[0].clientX, fxn.touches[0].clientY,
+        min(windowWidth, windowHeight / 1.25), windowWidth, windowHeight);
+} // end of touch started
