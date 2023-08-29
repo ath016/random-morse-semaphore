@@ -3,10 +3,15 @@ function Semaphore() {
 	this.x = 0;
 	this.y = 0;
 	this.size = 0;
+	// rotate left
 	this.rl = 0;
+	// rotate right
 	this.rr = 0;
+	// target roate left
 	this.trl = 0;
+	// target roate right
 	this.trr = 0;
+	// render order of arms
 	this.rend = true;
 	this.letter = ' ';
 	this.flicker = 0;
@@ -233,9 +238,11 @@ function Semaphore() {
 		const twoPI = Math.PI * 2;
 		move /= 2;
 		
+		// snap right arm to target
 		if(((this.trr - this.rr + twoPI) % (twoPI)) < 0.1 ||
 			(twoPI - 0.1) < ((this.trr - this.rr + twoPI) % (twoPI)))
-			 this.rr = this.trr;
+			this.rr = this.trr;
+		// move right arm
 		else {
 			if(((this.trr - this.rr + twoPI) % (twoPI)) < Math.PI)
 				this.rr = (this.rr + Math.PI / move) % (twoPI);
@@ -243,9 +250,11 @@ function Semaphore() {
 				this.rr = (this.rr + Math.PI * (2*move-1) / move) % (twoPI);
 		} // end of else
 		
+		// snap left arm to target
 		if(((this.trl - this.rl + twoPI) % (twoPI)) < 0.1 ||
 			(twoPI - 0.1) < ((this.trl - this.rl + twoPI) % (twoPI)))
-			 this.rl = this.trl;
+			this.rl = this.trl;
+		// move left arm
 		else {
 			if(((this.trl - this.rl + twoPI) % (twoPI)) < Math.PI)
 				this.rl = (this.rl + Math.PI / move) % (twoPI);

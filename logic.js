@@ -89,7 +89,7 @@ class Logic {
         
         // button
         fill('red');
-        strokeWeight(4);
+        strokeWeight(window_min / 64);
         stroke('white');
 
         rect(x, 0, window_min / 3, window_min / 8, text_size);
@@ -106,7 +106,7 @@ class Logic {
         // text
         fill('white');
 
-        strokeWeight(1);
+        strokeWeight(window_min / 512);
         textSize(text_size);
         text('Morse', x + window_min * 0.08, window_min * 0.08);
         text('Both', x + window_min * 0.435, window_min * 0.08);
