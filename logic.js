@@ -124,6 +124,10 @@ class Logic {
         this.morse.mute = !this.morse.mute;
     } // end of toggle mute
 
+    toggleSee() {
+        this.morse.see = !this.morse.see;
+    } // end of toggle see
+
     sync() {
         this.semaphoreString = this.getRandomString();
         this.semaphoreFrame = 0;
@@ -132,6 +136,8 @@ class Logic {
     } // end of sync
 
     pointer(x, y, window_min, width, height) {
+        console.log(x, y, window_min, width, height);
+
         // top menu
         if(y < window_min / 8 ) {
             // first item
@@ -189,9 +195,16 @@ class Logic {
 
         // middle
         else {
-            // only item
+            // center item
             if((width - window_min) / 2 < x && x < (width + window_min) / 2) {
-                this.toggleMute();
+                // left center
+                if(x < width / 2) {
+                    this.toggleSee();
+                } // end of if
+                // right center
+                else {
+                    this.toggleMute();
+                } // end of else
             } // end of only item
         } // end of else
     } // end of pointer

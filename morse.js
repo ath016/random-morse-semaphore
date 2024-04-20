@@ -11,6 +11,7 @@ function Morse() {
 	this.offset = 0;
 
 	this.mute = true;
+	this.see = true;
 	this.sound = '';
 
 	this.OCTAVE = 2;
@@ -95,18 +96,23 @@ function Morse() {
 		if(this.sound == '.' && !this.mute) this.dot();
 		if(this.sound == '-' && !this.mute) this.dash();
 		this.sound = '';
-
-		// draw text
-		textSize(size * 0.25);
-		this.stringDisplay
-			.forEach((x,i) => text(
-				x,
-				this.x + size / 16,
-				(1 - i/this.displayLength) * size - this.offset * this.size / this.displayLength
-			)) // end of for each
-			
+		
+		// lables
 		textSize(size / 8);
+		text(this.see? '🐵':'🙈', this.x + size * 1 / 8, this.y + size * 7 / 8);
 		text(this.mute? '🔈':'🔊', this.x + size * 6 / 8, this.y + size * 7 / 8);
+		
+		// draw morse
+		textSize(size * 0.25);
+		if(this.see) {
+			this.stringDisplay
+				.forEach((x,i) => text(
+					x,
+					this.x + size / 16,
+					(1 - i/this.displayLength) * size - this.offset * this.size / this.displayLength
+				)) // end of for each
+		} // end of if
+
 	} // end of draw object
 	
 	// update
